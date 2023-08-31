@@ -1,67 +1,37 @@
-import { useState } from "react"
+import React, { useState } from "react";
 
+function MessageForm({ addMessage }) {
+    const [text, setText] = useState("");
+    const [user, setUser] = useState("Eu");
 
-function MessageForm({addMessage}) {
-    const [text, setText] = useState("")
-    const [user, setUser] = useState("Eu")
+    const onSendMessage = (event) => {
+        event.preventDefault();
 
-    const date =()=>{
+        if (text.trim() === "") {
+            return;
+        }
         
-        const hours = new Date().getHours()
-        const minuts = new Date().getMinutes()
-        return `${hours}:${minuts}`
-    }
-
-    const onChangeText = (event) => {
-        setText(event.target.value)
-        console.log(event.target.value)
-    }
-
-     const onChangeUser = (event) =>{
-        event.preventDefault();
-        setUser(event.target.value)
-        console.log(event.target.value)
-    }
-
-    const onSendMessage =(event)=>{
-        event.preventDefault();
-
         const message = {
             user,
-            text,
-            hours: date()
-        }
-        addMessage(message)
-        console.log(message)
-        setText("")
-        
-    }
+            text
+        };
 
+        addMessage(message);
+        setText("");
+    };
 
-    return (<>
+    return (
+        <form onSubmit={onSendMessage}>
+            <select onChange={(e) => setUser(e.target.value)} value={user}>
+                <option>Eu</option>
+                <option>Turma</option>
+            </select>
 
-    <form onSubmit={onSendMessage}>
-        <select 
-            onChange={onChangeUser}
-            type="text"
-            value={user}>
-            <option>Eu</option>
-            <option>Turma</option>
-        </select>
+            <input onChange={(e) => setText(e.target.value)} placeholder="Mensagem" type="text" value={text} />
 
-        <input 
-            onChange={onChangeText}
-            placeholder="Messagem"
-            type="text"
-            value={text}
-        ></input>
-
-        <button>Enviar</button>
-
+            <button type="submit">Enviar</button>
         </form>
-    </>
-    )
-
+    );
 }
 
-export default MessageForm
+export default MessageForm;

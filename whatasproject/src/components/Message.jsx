@@ -1,17 +1,17 @@
-import { useState } from "react"
+import React from 'react';
 
+function Message({ message, deleteMessage }) {
+    const position = message.user === "Eu" ? "right" : "left";
 
-function Message({message, deleteMessage}) {
-   
-    return (<>
-        <div onDoubleClick={()=>deleteMessage(message)}>
-        <p>{message.user}</p>
-        <p>{message.text}</p>
-        <p>{message.hours}</p>
+    return (
+        <div onDoubleClick={() => deleteMessage(message)}>
+            <div style={{ 
+                textAlign: position, 
+                }}>
+                {message.text}
+            </div>
         </div>
-        </>
-    )
-
+    );
 }
 
-export default Message
+export default Message;
