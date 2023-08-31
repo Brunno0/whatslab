@@ -6,11 +6,7 @@ function MessageForm({ addMessage }) {
 
     const onSendMessage = (event) => {
         event.preventDefault();
-
-        if (text.trim() === "") {
-            return;
-        }
-        
+            
         const message = {
             user,
             text
@@ -27,7 +23,11 @@ function MessageForm({ addMessage }) {
                 <option>Turma</option>
             </select>
 
-            <input onChange={(e) => setText(e.target.value)} placeholder="Mensagem" type="text" value={text} />
+            <input 
+            onChange={(e) => setText(e.target.value)}
+             placeholder="Mensagem" 
+             type="text" 
+             value={text} />
 
             <button type="submit">Enviar</button>
         </form>
