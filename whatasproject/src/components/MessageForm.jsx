@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { MessageFormContainer, SelectInput, SendButton, UserInput } from "./StyledMessageForm"
 
 
 function MessageForm({addMessage}) {
@@ -6,7 +7,6 @@ function MessageForm({addMessage}) {
     const [user, setUser] = useState("Eu")
 
     const date =()=>{
-        
         const hours = new Date().getHours()
         const minuts = new Date().getMinutes()
         return `${hours}:${minuts}`
@@ -38,28 +38,28 @@ function MessageForm({addMessage}) {
     }
 
 
-    return (<>
-
-    <form onSubmit={onSendMessage}>
-        <select 
+    return (
+  
+    <MessageFormContainer onSubmit={onSendMessage}>
+        <SelectInput 
             onChange={onChangeUser}
             type="text"
             value={user}>
             <option>Eu</option>
             <option>Turma</option>
-        </select>
+        </SelectInput>
 
-        <input 
+        <UserInput 
             onChange={onChangeText}
             placeholder="Messagem"
             type="text"
             value={text}
-        ></input>
+        ></UserInput >
 
-        <button>Enviar</button>
+        <SendButton>Enviar</SendButton>
 
-        </form>
-    </>
+        </MessageFormContainer>
+    
     )
 
 }

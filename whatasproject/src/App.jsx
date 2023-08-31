@@ -1,33 +1,38 @@
 import { useState } from 'react'
 import MessageForm from './components/MessageForm'
 import Message from './components/Message'
+import GlobalStyle from './GlobalStyled'
+import { AppContainer, MessagesContainer } from './AppStyled'
 
 
 function App() {
 
-  const [ messages, setMessages] = useState([])
+  const [messages, setMessages] = useState([])
 
-  const addMessage = (message) =>{
+  const addMessage = (message) => {
     const listMessage = [...messages, message]
     setMessages(listMessage)
   }
 
-  const deleteMessage =(message)=>{
-    const listMessage = messages.filter((msg)=>{
+  const deleteMessage = (message) => {
+    const listMessage = messages.filter((msg) => {
       return msg != message
     })
     setMessages(listMessage)
 
   }
-  const messagesMap = messages.map((message)=>{
-    return <Message message={message} deleteMessage={deleteMessage}/>
+  const messagesMap = messages.map((message) => {
+    return <Message message={message} deleteMessage={deleteMessage} />
 
   })
 
   return (
     <>
-      {messagesMap? messagesMap : "loading"}
-      <MessageForm addMessage={addMessage}/>
+      <AppContainer>
+        <GlobalStyle />
+        <MessagesContainer>{messagesMap}</MessagesContainer>
+        <MessageForm addMessage={addMessage} />
+      </AppContainer>
     </>
   )
 }
