@@ -1,40 +1,19 @@
-import { useState } from 'react'
-import MessageForm from './components/MessageForm'
-import Message from './components/Message'
-import GlobalStyle from './GlobalStyled'
-import { AppContainer, MessagesContainer } from './AppStyled'
+import React from 'react';
+import GlobalStyle from './GlobalStyled'; // Importando os estilos globais
+import Chat from './components/Chat'; // Importando o componente Chat
 
-
+// Componente principal do aplicativo
 function App() {
-
-  const [messages, setMessages] = useState([])
-
-  const addMessage = (message) => {
-    const listMessage = [...messages, message]
-    setMessages(listMessage)
-  }
-
-  const deleteMessage = (message) => {
-    const listMessage = messages.filter((msg) => {
-      return msg != message
-    })
-    setMessages(listMessage)
-
-  }
-  const messagesMap = messages.map((message) => {
-    return <Message message={message} deleteMessage={deleteMessage} />
-
-  })
-
-  return (
-    <>
-      <AppContainer>
-        <GlobalStyle />
-        <MessagesContainer>{messagesMap}</MessagesContainer>
-        <MessageForm addMessage={addMessage} />
-      </AppContainer>
-    </>
-  )
+    // Retornando a estrutura JSX do aplicativo
+    return (
+        <>
+            {/* Estilos globais aplicados a todo o aplicativo */}
+            <GlobalStyle />
+            {/* Componente de chat para exibição de mensagens */}
+            <Chat />
+        </>
+    );
 }
 
-export default App
+// Exportando o componente 'App' para ser utilizado em outros arquivos
+export default App;
